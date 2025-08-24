@@ -17,9 +17,13 @@ Route::get('/jobs', function () {
             'id' => '2',
             'title' => 'Programmer',
             'salary' => '$100,000'
-        ]
+        ], [
+                'id' => '3',
+                'title' => 'Doctor',
+                'salary' => '$123,000'
             ]
-    ]);
+            ]
+    ]) ;
 });
 Route::get('/jobs/{id}', function ($id) {
     $jobs = [
@@ -38,7 +42,8 @@ Route::get('/jobs/{id}', function ($id) {
             'salary' => '$123,000'
         ]
     ];
-        return view('jobs');
+    $job = Arr::first($jobs, fn($job) => $job['id'] == $id );
+        return view('job', ['job' => $job]);
 });
 Route::get('/contact', function () {
     return view('contact');
