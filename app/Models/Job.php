@@ -29,7 +29,6 @@ class Job {
         // we changed "Job::all()" to "static:all()" cuz' we're already within the same class
 
         $job = Arr::first(static::getJobs(), fn($job) => $job['id'] == $id );
-
         if ( ! $job ){
             abort(404, 'Job not found buddy');
         }
